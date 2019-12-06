@@ -5,11 +5,9 @@
 
 int solution(int n) {
     int answer = 0;
-    scanf("%d", &n);
-    for(int i=0;i<=n;i++)
+    for(int i=1;i<=n;i++) //약수의 합이므로 n을 포함해야 한다!
     {
-        if(n%i==0) answer+=i;
-        else continue;
+        if(n%i==0) answer+=i; //약수는 나눴을 때 나머지가 0이다!
     }
     return answer;
 }
