@@ -7,3 +7,6 @@
 4. avg : 평균 구하기
 
 ## baekjoon
+
+## data-structure
+1. graph
