@@ -10,3 +10,4 @@
 
 ## data-structure
 1. graph
+2. binary_tree
