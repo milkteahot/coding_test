@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<memory.h>
-
+#include<string.h>
+#include<stdlib.h>
 
 #define KEY_SIZE 10
 #define TABLE_SIZE 13
@@ -14,7 +15,7 @@ typedef struct element
 typedef struct ListNode
 {
     element item;
-    ListNode *link;
+    element *link;
 } ListNode;
 ListNode *hash_table[TABLE_SIZE];
 
@@ -50,6 +51,49 @@ void hash_chain_add(element item, ListNode *ht[])
         node_before->link = ptr;
     else
         ht[hash_value] = ptr;
+}
+
+void hash_chain_delete(element item, ListNode *ht[])
+{
+    int hash_value = hash_function(item.key);
+    ListNode *ptr;
+    ListNode *node_before = NULL;
+    ListNode *node = ht[hash_value];
+    
+    if(ht[hash_value] == NULL) {
+        return 0;
+    }
+    // if(ht[hash_value] == NULL) {
+    //     ht[hash_value] == ptr;
+    // }
+    if(equal(node->item, item)) {
+        ListNode *ptr = ht[hash_value];
+        ht[hash_value] = ht[hash_value]->link;
+        printf(stderr, "Delete search key\n");
+        return;
+    }
+    else {
+        ListNode * ptr = ht[hash_value]->link;
+        ListNode * node_before = ht[hash_value];
+        
+        for(; node; node_before = node, node = node->link){ 
+            node_before = ptr;
+            ptr = ptr->link;
+        }
+    }
+    
+    if(ptr == NULL) return 0;
+    node_before->link = ptr->link;
+    free(ptr);
+    return 1;
+    ptr = (ListNode *)malloc(sizeof(ListNode));
+    ptr->item = item;
+    ptr->link = NULL;
+    // if(node_before)
+    //     node_before->link = NULL;
+    // else
+    //     ht[hash_value] = ptr;
+    
 }
 
 void hash_chain_search(element item, ListNode *ht[])
@@ -88,7 +132,7 @@ void main()
     int op;
     init_table(hash_table);
     while(1) {
-        printf("Enter the operation to do (0: insert, 1:search, 2:termaination): ");
+        printf("Enter the operation to do (0: insert, 1:delete, 2: search, 3:termaination): ");
         scanf("%d", &op);
         if(op==2) break;
         printf("Enter the search key: ");
@@ -96,6 +140,8 @@ void main()
         if(op==0)
             hash_chain_add(tmp, hash_table);
         else if(op==1)
+            hash_chain_delete(tmp, hash_table);    
+        else if(op==2)
             hash_chain_search(tmp, hash_table);
         hash_chain_print(hash_table);
         printf("\n");
