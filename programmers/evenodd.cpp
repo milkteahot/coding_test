@@ -8,3 +8,5 @@ char* solution(int num) {
     else answer = "Odd";
     return answer;
 }
+
+// return num%2 ==0 ? "Even" : "Odd";
