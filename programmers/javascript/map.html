@@ -1,0 +1,62 @@
+<body onload="render()">
+  <table>
+    <thead>
+      <th>name</th>
+      <th>phone</th>
+    </thead>
+
+    <tbody id="test"></tbody>
+  </table>
+
+  <script>
+      
+    const userList = reqUserList();
+    function reqUserList() {
+        return (
+            
+            // {name:"쿼카", phone:"010-1111-1111",
+            // name:"라이언", phone:"01-2222-2222"},
+           
+            {user: 
+                {userName: "Blue", nickName: "라이언"}, 
+            files: [
+                {title: "고양이가 세상을 구한다", 
+                caption: "슈퍼히어로의 등장", 
+                likeCount: 0}],
+            user:
+                {userName: "dust", nickName: "먼지"}, 
+            files: [
+                {title: "제목입니다", 
+                caption: "안녕", 
+                likeCount: 0}]
+            }
+        )
+    }
+    const test = userList.map(user => console.log(user));
+
+    function deleteUser(index){
+        userList.splice(index, 1);
+        render();
+    }
+
+    function makeListToDom(list){
+        const dom = list.map(e => `<tr>
+            <td>${e.user.userName}</td>
+            <td>${e.user.nickName}</td>
+            <td><button onclick='deleteUser(${index})'>삭제</button></td>
+            ${this.nickName}
+            </tr>`)
+        return dom;
+    }
+
+    function renderList(dom){
+        const d = dom.join('');
+        document.getElementById("test").innerHTML = d;
+    }
+
+    function render(){
+        const userListDom = makeListToDom(userList);
+        renderList(userListDom);
+    }
+  </script>
+</body>
