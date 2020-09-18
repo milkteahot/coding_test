@@ -1,3 +1,4 @@
+//Greedy
 function solution(number, k) {
     var answer = [];
     for(var i=0;i<number.length;i++){
