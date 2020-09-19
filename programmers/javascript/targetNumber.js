@@ -4,11 +4,15 @@ function solution(numbers, target) {
     return answer;
     
     function dfs(count, sum){
-        
+        if(count === numbers.length) {
+            if(sum === target){
+                answer++;
+            }
+            return;
+        }
+        dfs(count+1, sum+numbers[count]);
+        dfs(count+1, sum-numbers[count]);
     }
-
-    dfs(count+1, sum+numbers[count+1]);
-    dfs(count+1, sum-numbers[count+1]);
-
+    
 }
 
