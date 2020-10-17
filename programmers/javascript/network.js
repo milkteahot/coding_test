@@ -1,7 +1,7 @@
 //10.14
 function solution(n, computers) {
     var answer = 0;
-    //방문한 경우 Array에 담는다. 
+    //방문한 경우 담을 배열을 생성 
     var visited = new Array(n);
     //컴퓨터의 개수만큼 포문 돌면서
     for(var i=0;i<n;i++){
@@ -36,6 +36,19 @@ function solution(n, computers) {
 }
 
 //10.14 리뷰
+function solution(n, computers){
+    var answer = 0;
+    var visited = new Array(n);
+    for(var i=0;i<n.length;i++){
+        
+    }
+
+    
+    return answer;
+}
+
+
+//
 function solution(n, computers) {
     var answer = 0;
 
